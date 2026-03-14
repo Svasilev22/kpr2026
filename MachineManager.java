@@ -16,10 +16,13 @@ public class MachineManager {
     }
 
     public void createMachine(String name) {
+
         TuringMachine machine = new TuringMachine(nextId, name);
+
         machines.put(nextId, machine);
 
         System.out.println("Machine created with ID: " + nextId);
+
         nextId++;
     }
 
@@ -46,5 +49,57 @@ public class MachineManager {
         }
 
         System.out.println(machine);
+    }
+
+    public void addState(int id, String state) {
+
+        TuringMachine machine = machines.get(id);
+
+        if (machine == null) {
+            System.out.println("Machine not found.");
+            return;
+        }
+
+        machine.addState(state);
+        System.out.println("State added.");
+    }
+
+    public void setStart(int id, String state) {
+
+        TuringMachine machine = machines.get(id);
+
+        if (machine == null) {
+            System.out.println("Machine not found.");
+            return;
+        }
+
+        machine.setStartState(state);
+        System.out.println("Start state set.");
+    }
+
+    public void addAccept(int id, String state) {
+
+        TuringMachine machine = machines.get(id);
+
+        if (machine == null) {
+            System.out.println("Machine not found.");
+            return;
+        }
+
+        machine.addAcceptState(state);
+        System.out.println("Accept state added.");
+    }
+
+    public void addReject(int id, String state) {
+
+        TuringMachine machine = machines.get(id);
+
+        if (machine == null) {
+            System.out.println("Machine not found.");
+            return;
+        }
+
+        machine.addRejectState(state);
+        System.out.println("Reject state added.");
     }
 }
