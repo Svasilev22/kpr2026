@@ -102,4 +102,38 @@ public class MachineManager {
         machine.addRejectState(state);
         System.out.println("Reject state added.");
     }
+    public void addTransition(int id, String from, char read,
+                          String to, char write, String moveStr) {
+
+    TuringMachine machine = machines.get(id);
+
+    if (machine == null) {
+        System.out.println("Machine not found.");
+        return;
+    }
+
+    Move move;
+
+    try {
+        move = Move.valueOf(moveStr);
+    } catch (Exception e) {
+        System.out.println("Invalid move (use L, R, S).");
+        return;
+    }
+
+    machine.addTransition(from, read, to, write, move);
 }
+
+public void removeTransition(int id, String from, char read) {
+
+    TuringMachine machine = machines.get(id);
+
+    if (machine == null) {
+        System.out.println("Machine not found.");
+        return;
+    }
+
+    machine.removeTransition(from, read);
+}
+}
+
