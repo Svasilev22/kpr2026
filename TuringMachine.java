@@ -1,6 +1,8 @@
 package core;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class TuringMachine {
@@ -13,6 +15,8 @@ public class TuringMachine {
 
     private Set<String> acceptStates;
     private Set<String> rejectStates;
+    
+    private Map<String, Map<Character, Transition>> transitions;
 
     public TuringMachine(int id, String name) {
         this.id = id;
@@ -21,15 +25,13 @@ public class TuringMachine {
         states = new HashSet<>();
         acceptStates = new HashSet<>();
         rejectStates = new HashSet<>();
-    }
-
-    public int getId() {
-        return id;
+        transitions = new HashMap<>();
     }
 
     public String getName() {
         return name;
     }
+
 
     public void addState(String state) {
         states.add(state);
@@ -65,6 +67,48 @@ public class TuringMachine {
         rejectStates.add(state);
     }
 
+
+    public void addTransition(String from, char read,
+                              String to, char write, Move move) {
+
+        if (!states.contains(from) || !states.contains(to)) {
+            System.out.println("Invalid state.");
+            return;
+        }
+
+        transitions.putIfAbsent(from, new HashMap<>());
+
+        Map<Character, Transition> inner = transitions.get(from);
+
+        if (inner.containsKey(read)) {
+            System.out.println("Transition already exists.");
+            return;
+        }
+
+        Transition t = new Transition(from, read, to, write, move);
+        inner.put(read, t);
+
+        System.out.println("Transition added.");
+    }
+
+    public void removeTransition(String from, char read) {
+
+        if (!transitions.containsKey(from)) {
+            System.out.println("No transitions for this state.");
+            return;
+        }
+
+        Map<Character, Transition> inner = transitions.get(from);
+
+        if (!inner.containsKey(read)) {
+            System.out.println("Transition not found.");
+            return;
+        }
+
+        inner.remove(read);
+        System.out.println("Transition removed.");
+    }
+
     @Override
     public String toString() {
 
@@ -79,6 +123,14 @@ public class TuringMachine {
 
         sb.append("Accept states: ").append(acceptStates).append("\n");
         sb.append("Reject states: ").append(rejectStates).append("\n");
+
+        sb.append("Transitions:\n");
+
+        for (String state : transitions.keySet()) {
+            for (Transition t : transitions.get(state).values()) {
+                sb.append("  ").append(t).append("\n");
+            }
+        }
 
         return sb.toString();
     }
