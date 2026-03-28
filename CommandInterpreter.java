@@ -190,4 +190,18 @@ public class CommandInterpreter {
         System.out.println("  help");
         System.out.println("  exit");
     }
+    case "checkDet":
+
+    if (parts.length < 2) {
+        System.out.println("Usage: checkDet <id>");
+    } else {
+        try {
+            int id = Integer.parseInt(parts[1]);
+            manager.checkDeterministic(id);
+        } catch (Exception e) {
+            System.out.println("Invalid ID.");
+        }
+    }
+
+    break;
 }
