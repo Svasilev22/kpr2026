@@ -134,4 +134,25 @@ public class TuringMachine {
 
         return sb.toString();
     }
+    public boolean isDeterministic() {
+
+    for (String state : transitions.keySet()) {
+
+        Map<Character, Transition> inner = transitions.get(state);
+
+
+        Set<Character> seen = new HashSet<>();
+
+        for (Character c : inner.keySet()) {
+
+            if (seen.contains(c)) {
+                return false;
+            }
+
+            seen.add(c);
+        }
+    }
+
+    return true;
+}
 }
