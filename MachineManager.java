@@ -135,5 +135,20 @@ public void removeTransition(int id, String from, char read) {
 
     machine.removeTransition(from, read);
 }
+public void checkDeterministic(int id) {
+
+    TuringMachine machine = machines.get(id);
+
+    if (machine == null) {
+        System.out.println("Machine not found.");
+        return;
+    }
+
+    if (machine.isDeterministic()) {
+        System.out.println("The machine is deterministic.");
+    } else {
+        System.out.println("The machine is NOT deterministic.");
+    }
+}
 }
 
