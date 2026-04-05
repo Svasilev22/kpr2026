@@ -8,6 +8,7 @@ import java.util.Map;
 public class MachineManager {
 
     private Map<Integer, TuringMachine> machines;
+    private Map<Integer, Tape> tapes = new HashMap<>();
     private int nextId;
 
     public MachineManager() {
