@@ -166,6 +166,28 @@ public class CommandInterpreter {
                 }
 
                 break;
+                case "tape":
+
+    if (parts.length < 2) {
+        System.out.println("Usage: tape <id>");
+    } else {
+        int id = Integer.parseInt(parts[1]);
+        manager.printTape(id);
+    }
+
+    break;
+
+
+case "reset":
+
+    if (parts.length < 2) {
+        System.out.println("Usage: reset <id>");
+    } else {
+        int id = Integer.parseInt(parts[1]);
+        manager.resetTape(id);
+    }
+
+    break;
 
             default:
                 System.out.println("Unknown command. Type 'help'.");
