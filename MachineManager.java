@@ -16,16 +16,17 @@ public class MachineManager {
         nextId = 1;
     }
 
-    public void createMachine(String name) {
+public void createMachine(String name) {
 
-        TuringMachine machine = new TuringMachine(nextId, name);
+    TuringMachine machine = new TuringMachine(nextId, name);
 
-        machines.put(nextId, machine);
+    machines.put(nextId, machine);
+    tapes.put(nextId, new Tape());
 
-        System.out.println("Machine created with ID: " + nextId);
+    System.out.println("Machine created with ID: " + nextId);
 
-        nextId++;
-    }
+    nextId++;
+}
 
     public void listMachines() {
 
@@ -48,6 +49,29 @@ public class MachineManager {
             System.out.println("Machine not found.");
             return;
         }
+        public void printTape(int id) {
+
+    Tape tape = tapes.get(id);
+
+    if (tape == null) {
+        System.out.println("Machine not found.");
+        return;
+    }
+        public void resetTape(int id) {
+
+    Tape tape = tapes.get(id);
+
+    if (tape == null) {
+        System.out.println("Machine not found.");
+        return;
+    }
+
+    tape.reset();
+    System.out.println("Tape reset.");
+}
+
+    System.out.println(tape.getTapeContents(-5, 5));
+}
 
         System.out.println(machine);
     }
