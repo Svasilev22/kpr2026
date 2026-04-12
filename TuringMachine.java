@@ -155,4 +155,24 @@ public class TuringMachine {
 
     return true;
 }
+    public String getStartState() {
+    return startState;
+}
+
+public boolean isAcceptState(String state) {
+    return acceptStates.contains(state);
+}
+
+public boolean isRejectState(String state) {
+    return rejectStates.contains(state);
+}
+
+public Transition getTransition(String state, char symbol) {
+
+    if (!transitions.containsKey(state)) {
+        return null;
+    }
+
+    return transitions.get(state).get(symbol);
+}
 }
