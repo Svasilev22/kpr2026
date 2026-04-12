@@ -175,5 +175,6 @@ public void checkDeterministic(int id) {
         System.out.println("The machine is NOT deterministic.");
     }
 }
+private Map<Integer, execution.MachineExecution> executions = new HashMap<>();
 }
 
