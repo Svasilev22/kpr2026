@@ -23,7 +23,7 @@ public class MachineManager {
         nextId = 1;
     }
 
-    // ---------- BASIC ----------
+
 
     public void createMachine(String name) {
 
@@ -62,7 +62,7 @@ public class MachineManager {
         System.out.println(machine);
     }
 
-    // ---------- STATES ----------
+
 
     public void addState(int id, String state) {
 
@@ -116,7 +116,7 @@ public class MachineManager {
         System.out.println("Reject state added.");
     }
 
-    // ---------- TRANSITIONS ----------
+
 
     public void addTransition(int id, String from, char read,
                               String to, char write, String moveStr) {
@@ -152,7 +152,7 @@ public class MachineManager {
         machine.removeTransition(from, read);
     }
 
-    // ---------- CHECK DET ----------
+
 
     public void checkDeterministic(int id) {
 
@@ -170,7 +170,7 @@ public class MachineManager {
         }
     }
 
-    // ---------- TAPE ----------
+
 
     public void printTape(int id) {
 
@@ -197,7 +197,7 @@ public class MachineManager {
         System.out.println("Tape reset.");
     }
 
-    // ---------- EXECUTION ----------
+
 
     public void initExecution(int id, String input) {
 
