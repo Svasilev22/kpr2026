@@ -166,28 +166,89 @@ public class CommandInterpreter {
                 }
 
                 break;
-                case "tape":
 
-    if (parts.length < 2) {
-        System.out.println("Usage: tape <id>");
-    } else {
-        int id = Integer.parseInt(parts[1]);
-        manager.printTape(id);
-    }
+            case "checkDet":
 
-    break;
+                if (parts.length < 2) {
+                    System.out.println("Usage: checkDet <id>");
+                } else {
+                    try {
+                        int id = Integer.parseInt(parts[1]);
+                        manager.checkDeterministic(id);
+                    } catch (Exception e) {
+                        System.out.println("Invalid ID.");
+                    }
+                }
 
+                break;
 
-case "reset":
+            case "tape":
 
-    if (parts.length < 2) {
-        System.out.println("Usage: reset <id>");
-    } else {
-        int id = Integer.parseInt(parts[1]);
-        manager.resetTape(id);
-    }
+                if (parts.length < 2) {
+                    System.out.println("Usage: tape <id>");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+                    manager.printTape(id);
+                }
 
-    break;
+                break;
+
+            case "reset":
+
+                if (parts.length < 2) {
+                    System.out.println("Usage: reset <id>");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+                    manager.resetTape(id);
+                }
+
+                break;
+
+            case "init":
+
+                if (parts.length < 3) {
+                    System.out.println("Usage: init <id> <input>");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+                    String inputStr = parts[2];
+
+                    manager.initExecution(id, inputStr);
+                }
+
+                break;
+
+            case "step":
+
+                if (parts.length < 2) {
+                    System.out.println("Usage: step <id>");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+                    manager.step(id);
+                }
+
+                break;
+
+            case "status":
+
+                if (parts.length < 2) {
+                    System.out.println("Usage: status <id>");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+                    manager.status(id);
+                }
+
+                break;
+
+            case "resetExec":
+
+                if (parts.length < 2) {
+                    System.out.println("Usage: resetExec <id>");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+                    manager.resetExecution(id);
+                }
+
+                break;
 
             default:
                 System.out.println("Unknown command. Type 'help'.");
@@ -197,6 +258,7 @@ case "reset":
     private void printHelp() {
 
         System.out.println("Available commands:");
+
         System.out.println("  newTM <name>");
         System.out.println("  list");
         System.out.println("  print <id>");
@@ -209,21 +271,17 @@ case "reset":
         System.out.println("  addTrans <id> <q> <read> <q2> <write> <move>");
         System.out.println("  removeTrans <id> <q> <read>");
 
+        System.out.println("  checkDet <id>");
+
+        System.out.println("  tape <id>");
+        System.out.println("  reset <id>");
+
+        System.out.println("  init <id> <input>");
+        System.out.println("  step <id>");
+        System.out.println("  status <id>");
+        System.out.println("  resetExec <id>");
+
         System.out.println("  help");
         System.out.println("  exit");
     }
-    case "checkDet":
-
-    if (parts.length < 2) {
-        System.out.println("Usage: checkDet <id>");
-    } else {
-        try {
-            int id = Integer.parseInt(parts[1]);
-            manager.checkDeterministic(id);
-        } catch (Exception e) {
-            System.out.println("Invalid ID.");
-        }
-    }
-
-    break;
 }
