@@ -228,6 +228,29 @@ public class CommandInterpreter {
 
                 break;
 
+            case "run":
+
+                if (parts.length < 2) {
+                    System.out.println("Usage: run <id> [max=n]");
+                } else {
+                    int id = Integer.parseInt(parts[1]);
+
+                    int maxSteps = 100;
+
+                    if (parts.length >= 3 && parts[2].startsWith("max=")) {
+                        try {
+                            maxSteps = Integer.parseInt(parts[2].substring(4));
+                        } catch (Exception e) {
+                            System.out.println("Invalid max value.");
+                            return;
+                        }
+                    }
+
+                    manager.run(id, maxSteps);
+                }
+
+                break;
+
             case "status":
 
                 if (parts.length < 2) {
@@ -278,6 +301,7 @@ public class CommandInterpreter {
 
         System.out.println("  init <id> <input>");
         System.out.println("  step <id>");
+        System.out.println("  run <id> [max=n]");
         System.out.println("  status <id>");
         System.out.println("  resetExec <id>");
 
