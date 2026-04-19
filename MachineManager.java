@@ -23,8 +23,6 @@ public class MachineManager {
         nextId = 1;
     }
 
-
-
     public void createMachine(String name) {
 
         TuringMachine machine = new TuringMachine(nextId, name);
@@ -61,8 +59,6 @@ public class MachineManager {
 
         System.out.println(machine);
     }
-
-
 
     public void addState(int id, String state) {
 
@@ -116,8 +112,6 @@ public class MachineManager {
         System.out.println("Reject state added.");
     }
 
-
-
     public void addTransition(int id, String from, char read,
                               String to, char write, String moveStr) {
 
@@ -152,8 +146,6 @@ public class MachineManager {
         machine.removeTransition(from, read);
     }
 
-
-
     public void checkDeterministic(int id) {
 
         TuringMachine machine = machines.get(id);
@@ -169,8 +161,6 @@ public class MachineManager {
             System.out.println("The machine is NOT deterministic.");
         }
     }
-
-
 
     public void printTape(int id) {
 
@@ -196,8 +186,6 @@ public class MachineManager {
         tape.reset();
         System.out.println("Tape reset.");
     }
-
-
 
     public void initExecution(int id, String input) {
 
@@ -225,6 +213,18 @@ public class MachineManager {
         }
 
         exec.step();
+    }
+
+    public void run(int id, int maxSteps) {
+
+        MachineExecution exec = executions.get(id);
+
+        if (exec == null) {
+            System.out.println("Execution not initialized.");
+            return;
+        }
+
+        exec.run(maxSteps);
     }
 
     public void status(int id) {
